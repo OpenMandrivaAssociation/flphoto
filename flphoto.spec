@@ -21,7 +21,6 @@ Requires: 	%{libgphoto} >= 2.1.1
 Requires:	libgphoto-hotplug
 BuildRequires: 	libgphoto-devel >= 2.1.1 libfltk-devel libcups-devel libexif-devel
 BuildRequires:  ImageMagick desktop-file-utils
-BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
 %description
 flphoto is a basic photo/image management and display program.
