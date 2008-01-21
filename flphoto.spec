@@ -3,7 +3,7 @@
 
 %define name	flphoto
 %define version	1.3.1
-%define release	%mkrel 2
+%define release	%mkrel 3
 
 %define libgphoto %mklibname gphoto 2
 
@@ -11,7 +11,7 @@ Summary: 	All what you need for the photos from your digital camera
 Name: 		%{name}
 Version: 	%{version}
 Release: 	%{release}
-License: 	GPL
+License: 	GPLv2+
 Group: 		Graphics
 Source0: 	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-%{version}%{extraversion}-source.tar.bz2
 #Source0: 	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-1.1-20030727.tar.bz2
