@@ -106,14 +106,18 @@ Type=Application
 EOF
 
 %post
+%if %mdkversion < 200900
 %update_menus
 %update_icon_cache hicolor
+%endif
 update-alternatives --install %launchers/kde.desktop camera.kde.dynamic %launchers/%name.desktop 60
 update-alternatives --install %launchers/gnome.desktop camera.gnome.dynamic %launchers/%name.desktop 60
 
 %postun
+%if %mdkversion < 200900
 %clean_menus
 %clean_icon_cache hicolor
+%endif
 if [ $1 = 0 ]; then
   update-alternatives --remove camera.kde.dynamic %launchers/%name.desktop
   update-alternatives --remove camera.gnome.dynamic %launchers/%name.desktop
