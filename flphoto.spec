@@ -19,7 +19,7 @@ Source1:	digicam-launch-icon.png
 URL: 		http://www.easysw.com/~mike/flphoto/
 Requires: 	%{libgphoto} >= 2.1.1
 Requires:	libgphoto-hotplug
-BuildRequires: 	libgphoto-devel >= 2.1.1 libfltk-devel libcups-devel libexif-devel
+BuildRequires: 	libgphoto-devel >= 2.1.1 fltk-devel libcups-devel libexif-devel
 BuildRequires:  ImageMagick desktop-file-utils
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
