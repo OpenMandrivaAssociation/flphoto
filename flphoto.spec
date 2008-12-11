@@ -20,7 +20,7 @@ URL: 		http://www.easysw.com/~mike/flphoto/
 Requires: 	%{libgphoto} >= 2.1.1
 Requires:	libgphoto-hotplug
 BuildRequires: 	libgphoto-devel >= 2.1.1 fltk-devel libcups-devel libexif-devel
-BuildRequires:  ImageMagick desktop-file-utils
+BuildRequires:  imagemagick desktop-file-utils
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
 %description
