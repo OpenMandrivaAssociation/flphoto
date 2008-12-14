@@ -17,6 +17,7 @@ Source0: 	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-%{version}%{
 #Source0: 	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-1.1-20030727.tar.bz2
 Source1:	digicam-launch-icon.png
 Patch0:		flphoto-1.3.1-glibc-2.8.patch
+Patch1:		flphoto-1.3.1-use-ldflags.patch
 URL: 		http://www.easysw.com/~mike/flphoto/
 Requires: 	%{libgphoto} >= 2.1.1
 Requires:	libgphoto-hotplug
@@ -45,6 +46,7 @@ flphoto is a basic photo/image management and display program.
 %prep
 %setup -q -n %{name}-%{version}%{extraversion}
 %patch0 -p0
+%patch1 -p0
 
 # Use /mnt/memory_card as default directory for memory cards, as
 # hotplug sets up a supermount entry for memory cards to be mounted on
