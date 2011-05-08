@@ -19,6 +19,7 @@ Source1:	digicam-launch-icon.png
 Patch0:		flphoto-1.3.1-glibc-2.8.patch
 Patch1:		flphoto-1.3.1-use-ldflags.patch
 Patch2:		flphoto-1.3.1-format_not_a_string_literal_and_no_format_arguments.diff
+Patch3:		espmsg.patch
 URL: 		http://www.easysw.com/~mike/flphoto/
 Requires: 	%{libgphoto} >= 2.1.1
 Requires:	libgphoto-hotplug
@@ -49,6 +50,7 @@ flphoto is a basic photo/image management and display program.
 %patch0 -p0
 %patch1 -p0
 %patch2 -p1
+%patch3 -p0
 
 # Use /mnt/memory_card as default directory for memory cards, as
 # hotplug sets up a supermount entry for memory cards to be mounted on
