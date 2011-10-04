@@ -3,7 +3,7 @@
 
 %define name	flphoto
 %define version	1.3.1
-%define release	%mkrel 10
+%define release	%mkrel 11
 
 %define libgphoto %mklibname gphoto 2
 
