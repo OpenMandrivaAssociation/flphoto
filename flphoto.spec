@@ -82,13 +82,13 @@ rm -fr %buildroot
 %find_lang %{name}
 
 # icons
-mkdir -p $RPM_BUILD_ROOT%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
-convert -scale 48 %{SOURCE1} $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-convert -scale 32 %{SOURCE1} $RPM_BUILD_ROOT%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-convert -scale 16 %{SOURCE1} $RPM_BUILD_ROOT%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
+convert -scale 48 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+convert -scale 32 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+convert -scale 16 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+mkdir -p %{buildroot}%{_datadir}/applications
+cp %{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 desktop-file-install --vendor="" \
   --add-category="Photography" \
@@ -97,8 +97,8 @@ desktop-file-install --vendor="" \
 # dynamic desktop support
 %define launchers /etc/dynamic/launchers/camera
 
-mkdir -p $RPM_BUILD_ROOT%launchers
-cat > $RPM_BUILD_ROOT%launchers/%name.desktop << EOF
+mkdir -p %{buildroot}%launchers
+cat > %{buildroot}%launchers/%name.desktop << EOF
 [Desktop Entry]
 Name=FLPhoto
 Comment=All you need for the photos from your digital camera
