@@ -1,16 +1,12 @@
 %define		extraversion %nil	
 #define		extraversion rc1
 
-%define name	flphoto
-%define version	1.3.1
-%define release	%mkrel 12
-
 %define libgphoto %mklibname gphoto 2
 
 Summary: 	All what you need for the photos from your digital camera
-Name: 		%{name}
-Version: 	%{version}
-Release: 	%{release}
+Name: 		flphoto
+Version: 	1.3.1
+Release: 	13
 License: 	GPLv2+
 Group: 		Graphics
 Source0: 	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-%{version}%{extraversion}-source.tar.bz2
@@ -20,12 +16,14 @@ Patch0:		flphoto-1.3.1-glibc-2.8.patch
 Patch1:		flphoto-1.3.1-use-ldflags.patch
 Patch2:		flphoto-1.3.1-format_not_a_string_literal_and_no_format_arguments.diff
 Patch3:		espmsg.patch
+Patch4:		flphoto-1.3.1-compile.patch
 URL: 		http://www.easysw.com/~mike/flphoto/
 Requires: 	%{libgphoto} >= 2.1.1
 Requires:	libgphoto-hotplug
-BuildRequires: 	libgphoto-devel >= 2.1.1 fltk-devel libcups-devel libexif-devel
+BuildRequires: 	libgphoto-devel >= 2.1.1 fltk-devel
+BuildRequires:	pkgconfig(libexif)
+BuildRequires:	%mklibname cups -d
 BuildRequires:  imagemagick desktop-file-utils
-BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
 %description
 flphoto is a basic photo/image management and display program.
@@ -51,6 +49,8 @@ flphoto is a basic photo/image management and display program.
 %patch1 -p0
 %patch2 -p1
 %patch3 -p0
+%patch4 -p1 -b .compile~
+autoconf
 
 # Use /mnt/memory_card as default directory for memory cards, as
 # hotplug sets up a supermount entry for memory cards to be mounted on
@@ -79,7 +79,7 @@ perl -p -i -e 's,%{name}.png,%{name},g' %{name}.desktop
 %install
 rm -fr %buildroot
 %makeinstall_std
-%find_lang %{name}
+%find_lang %{name} || touch %name.lang
 
 # icons
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
