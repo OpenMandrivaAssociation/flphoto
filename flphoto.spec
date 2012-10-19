@@ -1,29 +1,31 @@
-%define		extraversion %nil	
-#define		extraversion rc1
+%define extraversion %nil
+#define extraversion rc1
 
 %define libgphoto %mklibname gphoto 2
 
-Summary: 	All what you need for the photos from your digital camera
-Name: 		flphoto
-Version: 	1.3.1
-Release: 	13
-License: 	GPLv2+
-Group: 		Graphics
-Source0: 	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-%{version}%{extraversion}-source.tar.bz2
-#Source0: 	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-1.1-20030727.tar.bz2
+Summary:	All what you need for the photos from your digital camera
+Name:		flphoto
+Version:	1.3.1
+Release:	14
+License:	GPLv2+
+Group:		Graphics
+Source0:	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-%{version}%{extraversion}-source.tar.bz2
+#Source0:	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-1.1-20030727.tar.bz2
 Source1:	digicam-launch-icon.png
 Patch0:		flphoto-1.3.1-glibc-2.8.patch
 Patch1:		flphoto-1.3.1-use-ldflags.patch
 Patch2:		flphoto-1.3.1-format_not_a_string_literal_and_no_format_arguments.diff
 Patch3:		espmsg.patch
 Patch4:		flphoto-1.3.1-compile.patch
-URL: 		http://www.easysw.com/~mike/flphoto/
-Requires: 	%{libgphoto} >= 2.1.1
+URL:		http://www.easysw.com/~mike/flphoto/
+Requires:	%{libgphoto} >= 2.1.1
 Requires:	libgphoto-hotplug
-BuildRequires: 	libgphoto-devel >= 2.1.1 fltk-devel
+BuildRequires:	libgphoto-devel >= 2.1.1
+BuildRequires:	fltk-devel
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	%mklibname cups -d
-BuildRequires:  imagemagick desktop-file-utils
+BuildRequires:	imagemagick
+BuildRequires:	desktop-file-utils
 
 %description
 flphoto is a basic photo/image management and display program.
@@ -77,7 +79,6 @@ perl -p -i -e 's,%{name}.png,%{name},g' %{name}.desktop
 %make
 
 %install
-rm -fr %buildroot
 %makeinstall_std
 %find_lang %{name} || touch %name.lang
 
@@ -110,28 +111,16 @@ Type=Application
 EOF
 
 %post
-%if %mdkversion < 200900
-%update_menus
-%update_icon_cache hicolor
-%endif
 update-alternatives --install %launchers/kde.desktop camera.kde.dynamic %launchers/%name.desktop 60
 update-alternatives --install %launchers/gnome.desktop camera.gnome.dynamic %launchers/%name.desktop 60
 
 %postun
-%if %mdkversion < 200900
-%clean_menus
-%clean_icon_cache hicolor
-%endif
 if [ $1 = 0 ]; then
   update-alternatives --remove camera.kde.dynamic %launchers/%name.desktop
   update-alternatives --remove camera.gnome.dynamic %launchers/%name.desktop
 fi
 
-%clean
-rm -fr %buildroot
-
 %files -f %{name}.lang
-%defattr(-,root,root,-)
 %lang(de) %_datadir/locale/de/*
 %lang(en_CA) %_datadir/locale/en_CA/*
 %lang(en_GB) %_datadir/locale/en_GB/*
