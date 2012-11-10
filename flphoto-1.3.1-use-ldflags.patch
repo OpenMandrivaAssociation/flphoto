@@ -1,0 +1,11 @@
+--- Makefile.in~	2008-12-14 11:16:58.000000000 +0100
++++ Makefile.in	2008-12-14 11:19:10.000000000 +0100
+@@ -328,7 +328,7 @@
+ 
+ flphoto$(EXEEXT):	$(OBJS)
+ 	echo Linking flphoto$(EXEEXT)...
+-	$(CXX) $(CXXFLAGS) -o flphoto$(EXEEXT) $(OBJS) $(LIBS)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o flphoto$(EXEEXT) $(OBJS) $(LIBS)
+ 
+ 
+ #

@@ -1,0 +1,59 @@
+--- flphoto-1.3.1/export.cxx.bero	2012-05-31 06:01:29.828968819 +0200
++++ flphoto-1.3.1/export.cxx	2012-05-31 06:01:44.198895177 +0200
+@@ -48,7 +48,7 @@
+ 
+ #include <errno.h>
+ 
+-#ifdef HAVE_LIBJPEG
++#if 1//def HAVE_LIBJPEG
+ // Some releases of the Cygwin JPEG libraries don't have a correctly
+ // updated header file for the INT32 data type; the following define
+ // from Shane Hill seems to be a usable workaround...
+--- flphoto-1.3.1/Fl_Print_Dialog2.cxx.bero	2012-05-31 06:00:11.083339608 +0200
++++ flphoto-1.3.1/Fl_Print_Dialog2.cxx	2012-05-31 06:00:24.199281901 +0200
+@@ -56,6 +56,7 @@
+ 
+ #ifdef HAVE_LIBCUPS
+ #  include <cups/cups.h>
++#  include <cups/ppd.h>
+ #endif // HAVE_LIBCUPS
+ 
+ 
+--- flphoto-1.3.1/Makefile.in.bero	2012-05-31 06:03:51.254174404 +0200
++++ flphoto-1.3.1/Makefile.in	2012-05-31 06:04:38.816876109 +0200
+@@ -51,7 +51,7 @@ EXEEXT		=	@EXEEXT@
+ CFLAGS		=	@CFLAGS@ @CPPFLAGS@ $(OPTIM)
+ CXXFLAGS	=	@CXXFLAGS@ @CPPFLAGS@ $(OPTIM)
+ LDFLAGS		=	@LDFLAGS@ $(OPTIM)
+-LIBS		=	@LIBS@
++LIBS		=	@LIBS@ -lpng -ljpeg
+ OPTIM		=	@OPTIM@ @DEFS@
+ 
+ 
+--- flphoto-1.3.1/configure.in.bero	2012-05-31 06:07:18.747312287 +0200
++++ flphoto-1.3.1/configure.in	2012-05-31 06:07:41.702523700 +0200
+@@ -125,12 +125,12 @@ fi
+ 
+ AC_SUBST(FLTKCONFIG)
+ 
+-jpeg=`$FLTKCONFIG --use-images --ldflags | grep jpeg`
++jpeg="dlopened" #`$FLTKCONFIG --use-images --ldflags | grep jpeg`
+ if test "x$jpeg" != x; then
+ 	AC_DEFINE(HAVE_LIBJPEG)
+ fi
+ 
+-png=`$FLTKCONFIG --use-images --ldflags | grep png`
++png="dlopened" #`$FLTKCONFIG --use-images --ldflags | grep png`
+ if test "x$png" != x; then
+ 	AC_DEFINE(HAVE_LIBPNG)
+ fi
+--- flphoto-1.3.1/image.cxx.bero	2012-05-31 06:08:22.874861916 +0200
++++ flphoto-1.3.1/image.cxx	2012-05-31 06:08:28.185901883 +0200
+@@ -91,6 +91,7 @@ extern "C" {
+ #endif // HAVE_LIBJPEG
+ 
+ #ifdef HAVE_LIBPNG
++#  include <zlib.h>
+ #  include <png.h>
+ #endif // HAVE_LIBPNG
+ 

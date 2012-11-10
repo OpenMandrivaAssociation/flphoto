@@ -1,0 +1,217 @@
+diff -Naurp flphoto-1.3.1/album.cxx flphoto-1.3.1.oden/album.cxx
+--- flphoto-1.3.1/album.cxx	2006-11-13 02:20:48.000000000 +0100
++++ flphoto-1.3.1.oden/album.cxx	2009-08-16 13:16:57.000000000 +0200
+@@ -285,7 +285,7 @@ flphoto::close_album_cb()
+   // First save the album as needed...
+   if (album_changed_)
+   {
+-    switch (fl_choice(_("Album has changed, do you wish to save it before closing?"),
++    switch (fl_choice(_("Album has changed, do you wish to save it before closing?"), "%s",
+                       _("Discard Album"), _("Save Album"), _("Cancel")))
+     {
+       case 0 : // Discard
+@@ -386,7 +386,7 @@ flphoto::quit_cb()
+ 
+   if (album)
+   {
+-    switch (fl_choice(_("Some albums have been changed, do you wish to save them before closing?"),
++    switch (fl_choice(_("Some albums have been changed, do you wish to save them before closing?"), "%s",
+                       _("Discard Albums"), _("Save Albums"), _("Cancel")))
+     {
+       case 0 : // Discard
+diff -Naurp flphoto-1.3.1/camera.cxx flphoto-1.3.1.oden/camera.cxx
+--- flphoto-1.3.1/camera.cxx	2009-08-16 13:16:40.000000000 +0200
++++ flphoto-1.3.1.oden/camera.cxx	2009-08-16 13:16:57.000000000 +0200
+@@ -164,7 +164,7 @@ flphoto::camera_cb()
+   camera_chooser_cb();
+ 
+   if (camera_chooser_->size() < 3)
+-    fl_message(_("Sorry, no cameras were found.\n"
++    fl_message("%s", _("Sorry, no cameras were found.\n"
+                  "Is your camera connected to a USB port and turned on?"));
+ #else
+   fl_message(_("Sorry, no camera support available."));
+@@ -427,7 +427,7 @@ flphoto::camera_delete_cb()
+ 
+ 
+   // Confirm the deletion...
+-  if (!fl_choice(_("Really delete the selected images?"),
++  if (!fl_choice(_("Really delete the selected images?"), "%s",
+                  _("Cancel"), _("Delete"), NULL))
+     return;
+ 
+diff -Naurp flphoto-1.3.1/directory.cxx flphoto-1.3.1.oden/directory.cxx
+--- flphoto-1.3.1/directory.cxx	2006-11-11 06:56:04.000000000 +0100
++++ flphoto-1.3.1.oden/directory.cxx	2009-08-16 13:16:57.000000000 +0200
+@@ -77,7 +77,7 @@ flphoto::export_dir_ok_cb()
+ 
+   if (!*dir)
+   {
+-    fl_alert(_("Please choose a directory!"));
++    fl_alert("%s", _("Please choose a directory!"));
+     return;
+   }
+ 
+diff -Naurp flphoto-1.3.1/export.cxx flphoto-1.3.1.oden/export.cxx
+--- flphoto-1.3.1/export.cxx	2006-11-18 04:24:41.000000000 +0100
++++ flphoto-1.3.1.oden/export.cxx	2009-08-16 13:16:57.000000000 +0200
+@@ -215,7 +215,7 @@ flphoto::export_html_ok_cb()
+   path = export_path_field_->value();
+   if (!path || !*path)
+   {
+-    fl_alert(_("Please choose an export directory or URL."));
++    fl_alert("%s", _("Please choose an export directory or URL."));
+     return;
+   }
+ 
+@@ -287,7 +287,7 @@ flphoto::export_html_ok_cb()
+ 
+   if (!strncmp(path, "ftp:", 4))
+   {
+-    fl_alert(_("Sorry, FTP export not currently supported."));
++    fl_alert("%s",_("Sorry, FTP export not currently supported."));
+     export_html_window_->hide();
+     return;
+   }
+@@ -960,11 +960,11 @@ flphoto::export_html_ok_cb()
+     delete http;
+     rmdir(dstdir);
+ 
+-    fl_message(_("Album exported successfully!"));
++    fl_message("%s", _("Album exported successfully!"));
+   }
+   else if (!strncmp(path, "ftp:", 4))
+   {
+-    fl_alert(_("FTP upload currently not supported, sorry!"));
++    fl_alert("%s", _("FTP upload currently not supported, sorry!"));
+   }
+ 
+   // Hide the window...
+diff -Naurp flphoto-1.3.1/image.cxx flphoto-1.3.1.oden/image.cxx
+--- flphoto-1.3.1/image.cxx	2006-11-18 14:56:11.000000000 +0100
++++ flphoto-1.3.1.oden/image.cxx	2009-08-16 13:16:57.000000000 +0200
+@@ -181,7 +181,7 @@ flphoto::edit_image_cb()
+     }
+   }
+   else
+-    fl_message(_("Please open an image first."));
++    fl_message("%s", _("Please open an image first."));
+ #endif // WIN32
+ }
+ 
+@@ -2042,11 +2042,11 @@ flphoto::edit_selected_image_cb()
+ 
+   if (argc == 1)
+   {
+-    fl_message(_("Please select one or more images to edit."));
++    fl_message("%s", _("Please select one or more images to edit."));
+     return;
+   }
+ 
+-  if (!fl_choice(_("Are you sure you want to edit all of the selected images?"),
++  if (!fl_choice("%s", _("Are you sure you want to edit all of the selected images?"),
+                  _("Cancel"), _("Edit"), NULL))
+     return;
+ 
+@@ -2092,7 +2092,7 @@ flphoto::save_selected_image_cb()
+   Fl_Image_Browser::ITEM *item;			// Current item
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to save all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to save all of the selected images?"), "%s",
+                  _("Cancel"), _("Save All"), NULL))
+     return;
+ 
+@@ -2124,7 +2124,7 @@ flphoto::revert_selected_image_cb()
+   Fl_Image_Browser::ITEM *item;			// Current item
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to revert all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to revert all of the selected images?"), "%s",
+                  _("Cancel"), _("Revert"), NULL))
+     return;
+ 
+@@ -2207,7 +2207,7 @@ flphoto::remove_selected_image_cb()
+   Fl_Image_Browser::ITEM *item;			// Current item
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to remove all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to remove all of the selected images?"), "%s",
+                  _("Cancel"), _("Remove Image"), NULL))
+     return;
+ 
+@@ -2255,7 +2255,7 @@ flphoto::auto_adjust_selected_cb()
+   int			batch;			// Batch flag
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to auto-adjust and save all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to auto-adjust and save all of the selected images?"), "%s",
+                  _("Cancel"), _("Adjust Images and Save"), NULL))
+     return;
+ 
+@@ -2287,7 +2287,7 @@ flphoto::adjust_levels_selected_cb()
+   int			batch;			// Batch flag
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to adjust the brightness and contrast\nand save all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to adjust the brightness and contrast\nand save all of the selected images?"), "%s",
+                  _("Cancel"), _("Adjust Images and Save"), NULL))
+     return;
+ 
+@@ -2319,7 +2319,7 @@ flphoto::blur_selected_cb()
+   int			batch;			// Batch flag
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to blur and save all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to blur and save all of the selected images?"), "%s",
+                  _("Cancel"), _("Blur Images and Save"), NULL))
+     return;
+ 
+@@ -2351,7 +2351,7 @@ flphoto::sharpen_selected_cb()
+   int			batch;			// Batch flag
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to sharpen and save all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to sharpen and save all of the selected images?"), "%s",
+                  _("Cancel"), _("Sharpen Images and Save"), NULL))
+     return;
+ 
+@@ -2383,7 +2383,7 @@ flphoto::crop_selected_cb()
+   int			batch;			// Batch flag
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to crop and save all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to crop and save all of the selected images?"), "%s",
+                  _("Cancel"), _("Crop Images and Save"), NULL))
+     return;
+ 
+@@ -2415,7 +2415,7 @@ flphoto::rotate_selected_cb(int angle)		
+   int			batch;			// Batch flag
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to rotate and save all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to rotate and save all of the selected images?"), "%s",
+                  _("Cancel"), _("Rotate Images and Save"), NULL))
+     return;
+ 
+@@ -2447,7 +2447,7 @@ flphoto::scale_selected_cb()
+   int			batch;			// Batch flag
+ 
+ 
+-  if (!fl_choice(_("Are you sure you want to scale and save all of the selected images?"),
++  if (!fl_choice(_("Are you sure you want to scale and save all of the selected images?"), "%s",
+                  _("Cancel"), _("Scale Images and Save"), NULL))
+     return;
+ 
+diff -Naurp flphoto-1.3.1/slideshow.cxx flphoto-1.3.1.oden/slideshow.cxx
+--- flphoto-1.3.1/slideshow.cxx	2006-11-21 04:09:10.000000000 +0100
++++ flphoto-1.3.1.oden/slideshow.cxx	2009-08-16 13:16:57.000000000 +0200
+@@ -59,7 +59,7 @@ flphoto::slideshow_cb()
+   // See if we have any images in this album...
+   if (!browser_->count())
+   {
+-    fl_alert(_("No images to show in a slideshow!"));
++    fl_alert("%s", _("No images to show in a slideshow!"));
+     return;
+   }
+ 

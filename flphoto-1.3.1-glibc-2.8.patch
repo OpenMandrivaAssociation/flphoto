@@ -1,0 +1,10 @@
+--- camera.cxx~	2008-12-14 10:40:24.000000000 +0100
++++ camera.cxx	2008-12-14 10:41:05.000000000 +0100
+@@ -36,6 +36,7 @@
+ #include "i18n.h"
+ #include "flstring.h"
+ #include <stdlib.h>
++#include <sys/stat.h>
+ #if defined(WIN32) && !defined(__CYGWIN__)
+ #  include <direct.h>
+ #  include <io.h>
