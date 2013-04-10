@@ -1,9 +1,9 @@
-%define		extraversion %nil
+%define extraversion %nil
 
 Summary:	All what you need for the photos from your digital camera
 Name:		flphoto
 Version:	1.3.1
-Release:	15
+Release:	16
 License:	GPLv2+
 Group:		Graphics
 URL:		http://www.easysw.com/~mike/flphoto/
