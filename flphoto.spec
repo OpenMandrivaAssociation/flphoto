@@ -3,7 +3,7 @@
 Summary:	All what you need for the photos from your digital camera
 Name:		flphoto
 Version:	1.3.1
-Release:	16
+Release:	17
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.easysw.com/~mike/flphoto/
@@ -57,7 +57,7 @@ sed -i -e 's:/mnt/flash:/media/removable:' *.cxx doc/* po/*
 sed -i -e 's:/mnt/card:/media/removable:' *.cxx doc/* po/*
 
 # Remove portuguese translation
-sed -i -e 's:(TRANSLATIONS =.*?)\s*po/pt(.*)$:$1$2:' Makefile Makefile.in
+perl -p -i -e 's:(TRANSLATIONS =.*?)\s*po/pt(.*)$:$1$2:' Makefile.in
 
 # correct icon name
 sed -i -e 's,%{name}.png,%{name},g' %{name}.desktop
