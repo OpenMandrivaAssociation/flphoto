@@ -3,7 +3,7 @@
 Summary:	All what you need for the photos from your digital camera
 Name:		flphoto
 Version:	1.3.1
-Release:	24
+Release:	25
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.easysw.com/~mike/flphoto/
@@ -66,7 +66,7 @@ sed -i -e 's,%{name}.png,%{name},g' %{name}.desktop
 # CVS versions need "./autogen.sh"
 #./autogen.sh
 
-%configure2_5x \
+%configure \
 	--with-docdir=%{_datadir}/doc/%{name}
 
 # This the Makefile does not do automatically
