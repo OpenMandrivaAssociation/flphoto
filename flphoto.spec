@@ -1,4 +1,5 @@
 %define extraversion %nil
+%define _disable_lto 1
 
 Summary:	All what you need for the photos from your digital camera
 Name:		flphoto
