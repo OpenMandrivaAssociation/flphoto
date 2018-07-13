@@ -16,6 +16,27 @@ Patch2:		flphoto-1.3.1-format_not_a_string_literal_and_no_format_arguments.diff
 Patch3:		espmsg.patch
 Patch4:		flphoto-1.3.1-compile.patch
 
+BuildRequires:	pkgconfig(cairo)
+BuildRequires:	pkgconfig(com_err)
+BuildRequires:	pkgconfig(fontconfig)
+BuildRequires:	pkgconfig(libjpeg)
+BuildRequires:	pkgconfig(mit-krb5-gssapi)
+BuildRequires:	pkgconfig(mit-krb5)
+BuildRequires:	pkgconfig(krb5-gssapi)
+BuildRequires:	pkgconfig(kdb)
+BuildRequires:	pkgconfig(kadm-server)
+BuildRequires:	pkgconfig(kadm-client)
+BuildRequires:	pkgconfig(gssrpc)
+BuildRequires:	pkgconfig(krb5)
+BuildRequires:	pkgconfig(pixman-1)
+BuildRequires:	pkgconfig(libpng)
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xfixes)
+BuildRequires:	pkgconfig(xft)
+BuildRequires:	pkgconfig(xinerama)
+BuildRequires:	pkgconfig(xrender)
+BuildRequires:	pkgconfig(zlib)
 BuildRequires:	desktop-file-utils
 BuildRequires:	imagemagick
 BuildRequires:	cups-devel
