@@ -4,7 +4,7 @@
 Summary:	All what you need for the photos from your digital camera
 Name:		flphoto
 Version:	1.3.1
-Release:	28
+Release:	29
 License:	GPLv2+
 Group:		Graphics
 Url:		http://www.easysw.com/~mike/flphoto/
