@@ -7,7 +7,7 @@ Version:	1.3.1
 Release:	29
 License:	GPLv2+
 Group:		Graphics
-Url:		http://www.easysw.com/~mike/flphoto/
+Url:		https://www.easysw.com/~mike/flphoto/
 Source0:	http://belnet.dl.sourceforge.net/sourceforge/fltk/%{name}-%{version}%{extraversion}-source.tar.bz2
 Source1:	digicam-launch-icon.png
 Patch0:		flphoto-1.3.1-glibc-2.8.patch
