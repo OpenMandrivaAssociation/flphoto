@@ -16,6 +16,11 @@ Patch2:		flphoto-1.3.1-format_not_a_string_literal_and_no_format_arguments.diff
 Patch3:		espmsg.patch
 Patch4:		flphoto-1.3.1-compile.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(com_err)
 BuildRequires:	pkgconfig(fontconfig)
